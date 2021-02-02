@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-    get 'index', to: 'index#index'
+  devise_for :users
+  get 'persons/profile'
+  get 'index', to: 'index#index'
+  root 'index#index'
+  get 'persons/profile', as: 'user_root'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
