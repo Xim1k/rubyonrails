@@ -1,0 +1,9 @@
+<h1><%= @product.name %></h1>
+<h2>Количество: <%= @product.quantity %></h4>
+<h4>Цена: <%= @product.price %></h4>
+
+<% if @user && @user.manager? %>
+    <%= link_to 'Удалить', @product, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%= link_to 'Назад', product_index_path %>

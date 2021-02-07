@@ -1,0 +1,8 @@
+<h3>Create a Product</h3>
+<%= form_with url: product_index_path, :method => :post, model: @product do |form| %>
+  <%= form.text_field :name, placeholder: "name" %>
+  <%= form.text_field :quantity, placeholder: "quantity" %>
+  <%= form.text_field :price, placeholder: "price" %>
+
+  <%= form.submit %>
+<% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :product
   devise_for :users
   get 'persons/profile'
   get 'index', to: 'index#index'
