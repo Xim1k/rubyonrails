@@ -1,8 +1,9 @@
 #!/bin/bash
-FROM ruby:2.5
+FROM ruby:2.7.2
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 RUN apt install -y nodejs npm 
 RUN npm install --global yarn
+RUN yarn install --check-files
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile

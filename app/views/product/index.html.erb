@@ -2,8 +2,13 @@
   <% @products.each do |product| %>
     <tr>
       <td><%= link_to product.name, product_path(product) %></td>
-      <td><%= button_to 'Edit', edit_product_path(product), method: 'get'%></td>
-      <td><%= button_to 'Remove', product_path(product), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
+      <% if @user && @user.manager? %>
+          <td><%= button_to 'Изменить', edit_product_path(product), method: 'get'%></td>
+          <td><%= button_to 'Удалить', product_path(product), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
-<%= link_to "Add a New Product", new_product_path %>
+<% if @user && @user.manager? %>
+    <%= link_to "Добавить", new_product_path %>
+<% end %>

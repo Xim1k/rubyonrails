@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  #get 'product/index'
-  #get 'product/show', as: 'product_path'
-  #get 'product/new'
-  #get 'product/edit'
   resources :product
   devise_for :users
   get 'persons/profile'
