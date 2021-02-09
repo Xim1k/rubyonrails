@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: [:client, :manager, :operator]
+  has_many :requests, inverse_of: 'operator'
 end

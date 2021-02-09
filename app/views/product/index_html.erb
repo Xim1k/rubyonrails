@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Цена</th>
+      <th scope="col">В наличии</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.price %></td>
+          <td><%= product.quantity %></td>
+          <td>
+            <% if @user && @user.manager? %>
+                <%= button_to 'Изменить', edit_product_path(product), method: 'get'%>
+                <%= button_to 'Удалить', product_path(product), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+                <%= button_to 'Оформить заявку', request_create_path(product), method: 'post' %></td>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @user && @user.manager? %>
+    <%= link_to "Добавить", new_product_path %>
+<% end %>
