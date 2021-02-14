@@ -12,9 +12,7 @@ class ProductController < ApplicationController
   def new
     @user = current_user
 
-    if !@user || !@user.manager?
-        redirect_to product_index_path
-    end
+    redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.new
   end
@@ -22,9 +20,7 @@ class ProductController < ApplicationController
   def edit
     @user = current_user
 
-    if !@user || !@user.manager?
-        redirect_to product_index_path
-    end
+    redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.find(params[:id])
   end
@@ -39,9 +35,7 @@ class ProductController < ApplicationController
   def destroy
     @user = current_user
 
-    if !@user || !@user.manager?
-        redirect_to product_index_path
-    end
+    redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.find(params[:id])
     @product.destroy
@@ -60,5 +54,4 @@ class ProductController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :quantity, :price)
   end
-
 end

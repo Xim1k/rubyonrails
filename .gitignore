@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+.idea/dataSources.xml
 
 # Ignore all logfiles and tempfiles.
 /log/*

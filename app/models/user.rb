@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: [:client, :manager, :operator]
-  has_many :requests, inverse_of: 'operator'
+  enum role: { client: 0, manager: 1, operator: 2 }
+  has_many :requests, inverse_of: 'operator', dependent: :destroy
 end

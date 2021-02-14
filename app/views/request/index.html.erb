@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Статус</th>
+      <th scope="col">Название продукта</th>
+      <th scope="col">Кол-во</th>
+      <th scope="col">Клиент</th>
+      <th scope="col">Оператор</th>
+      <th scope="col">Действия</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @requests.each do |request| %>
+        <tr>
+          <td><%= request.status %></td>
+          <td><%= request.product.name %></td>
+          <td><%= request.quantity %></td>
+          <td><%= request.user.email %></td>
+          <td><%= request.operator.email %></td>
+          <td>
+            <%= button_to 'Одобрить', request_finish_path(request), method: 'post' %>
+            <%= button_to 'Отменить', request_cancel_path(request), method: 'post' %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

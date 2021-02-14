@@ -29,6 +29,11 @@
         <li class="nav-item">
             <%= link_to 'Продукты', product_index_path, { :class=>"nav-link" } %>
         </li>
+        <% if current_user %>
+            <% if current_user.manager? || current_user.operator? %>
+                <%= link_to 'Заявки', request_index_path, { :class=>"nav-link" } %>
+            <% end %>
+        <% end %>
         <% if user_signed_in? %>
             <li class="nav-item">
                 <%= link_to 'Выйти', destroy_user_session_path, { :class=>"nav-link", method: :delete } %>
