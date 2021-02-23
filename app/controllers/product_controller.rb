@@ -4,14 +4,8 @@ class ProductController < ApplicationController
     @products = Product.all
   end
 
-  def show
-    @user = current_user
-    @product = Product.find(params[:id])
-  end
-
   def new
     @user = current_user
-
     redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.new
@@ -19,22 +13,23 @@ class ProductController < ApplicationController
 
   def edit
     @user = current_user
-
     redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.find(params[:id])
   end
 
   def update
+    @user = current_user
+    redirect_to product_index_path if !@user || !@user.manager?
+
     @product = Product.find(params[:id])
     @product.update(product_params)
 
-    redirect_to product_path(@product)
+    redirect_to product_index_path
   end
 
   def destroy
     @user = current_user
-
     redirect_to product_index_path if !@user || !@user.manager?
 
     @product = Product.find(params[:id])
@@ -44,9 +39,12 @@ class ProductController < ApplicationController
   end
 
   def create
-    product = Product.create(product_params)
+    @user = current_user
+    redirect_to product_index_path if !@user || !@user.manager?
 
-    redirect_to product_path(product)
+    Product.create(product_params)
+
+    redirect_to product_index_path
   end
 
   private

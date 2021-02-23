@@ -21,11 +21,9 @@ class RequestController < ApplicationController
 
   def index
     @user = current_user
-
     redirect_to product_index_path if !@user || @user.client?
 
     @requests = Request.where(status: Request::IN_PROGRESS).find_each if @user.manager?
-
     @requests = Request.where(operator: @user, status: Request::IN_PROGRESS).find_each if @user.operator?
   end
 
