@@ -6,7 +6,7 @@ module RequestHelper
     min = find_min(operators)
 
     operators.each do |operator|
-      if min == operator.requests.count
+      if min == count_requests(operator)
         free_operator = operator
         break
       end
@@ -19,9 +19,13 @@ module RequestHelper
     min = nil
 
     operators.each do |operator|
-      min = operator.requests.count if min.nil? || min > operator.requests.count
+      min = count_requests(operator) if min.nil? || min > count_requests(operator)
     end
 
     min
+  end
+
+  def count_requests(operator)
+    Request.where(operator: operator).count
   end
 end
